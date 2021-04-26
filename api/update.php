@@ -28,7 +28,15 @@
         $sqlQuery = "UPDATE  orders SET ";
     foreach( $x as $y => $val) {
         if( $val!=''  && !(preg_match("/^[\w. ]+$/",$val) == 1 && preg_match("/^[\w. ]+$/",$y) == 1 )) {
-            $badInput=true;
+
+            /* echo "\n" . $y;
+            echo "\n" . $val;
+            echo "\n" . var_export($val != '', 1);
+            echo "\n" . var_export(!(preg_match("/^[\w. ]+$/",$val) == 1), 1);
+            echo "\n" . var_export(preg_match("/^[\w. ]+$/",$y) == 1, 1);
+            exit; */
+
+            // $badInput=true;
          }
         if($y=='rowid'){
             $orders->ID=htmlspecialchars(strip_tags($val));

@@ -20,19 +20,20 @@
         $tableMeta = new tableMeta();
         $tableMeta->Deletable = true;
         $tableMeta->Insertable = true;
-        $tableMeta->Name = "Orders";
+        $tableMeta->Name = "orders";
 
-         $table_names = $stmt->fetchAll(PDO::FETCH_COLUMN);
-         foreach($table_names as $col) {
+        $table_names = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        foreach($table_names as $col) {
             $col1=   new colMeta();
             $col1->Name=$col;
-            if($col!='ID'){
-            $col1->Editable=true;
-            $col1->Searchable=true;
-        }
-            array_push($columns, $col1);
+            if (true) {
+                $col1->Editable = true;
+                $col1->Searchable = false;
+                $col1->Class=$col;
             }
-            $tableMeta->Column = $columns;
+            array_push($columns, $col1);
+        }
+        $tableMeta->Column = $columns;
         echo json_encode($tableMeta);
     }
 
